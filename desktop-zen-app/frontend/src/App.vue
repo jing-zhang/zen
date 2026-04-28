@@ -27,9 +27,13 @@ onMounted(async () => {
   }
 
   // Register saveAndClose on Wails OnBeforeClose event
-  EventsOn('wails:beforeclose', async () => {
-    await zenStore.saveAndClose()
-  })
+  try {
+    EventsOn('wails:beforeclose', async () => {
+      await zenStore.saveAndClose()
+    })
+  } catch (error) {
+    console.error('Failed to register event listener:', error)
+  }
 })
 </script>
 
@@ -57,6 +61,8 @@ onMounted(async () => {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 .fallback-alert-overlay {
