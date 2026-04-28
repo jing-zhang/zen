@@ -18,11 +18,25 @@ Desktop Zen App is a minimalist timer application designed to help you maintain 
 
 ## 🚀 Quick Start
 
+### ⚡ Fastest Way to Run
+
+**Linux/macOS:**
+```bash
+./run.sh
+```
+
+**Windows:**
+```cmd
+run.bat
+```
+
+That's it! The script will check dependencies and start the app.
+
 ### Prerequisites
 
 - **Go** 1.20+ ([Download](https://golang.org/dl/))
 - **Node.js** 16+ ([Download](https://nodejs.org/))
-- **Wails CLI** ([Install](https://wails.io/docs/gettingstarted/installation))
+- **Wails CLI** (auto-installed if missing)
 
 For Linux, you'll also need GTK and WebKit development libraries:
 ```bash
@@ -31,7 +45,7 @@ sudo apt-get install libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3
 
 ### Development Mode
 
-Run the app in development mode with hot reload:
+The easy-run scripts handle everything. Or run manually:
 
 ```bash
 cd desktop-zen-app
@@ -43,6 +57,12 @@ This starts:
 - **Vite Dev Server**: http://localhost:5174 (browser access)
 
 Changes to frontend code reload instantly. Changes to Go code require recompilation.
+
+### 📖 See Also
+- **[QUICKSTART.md](QUICKSTART.md)** - Fast setup guide with all commands
+- **[run.sh / run.bat](run.sh)** - Easy development server launcher
+- **[test.sh / test.bat](test.sh)** - Run all tests
+- **[build.sh / build.bat](build.sh)** - Build for production
 
 ### Browser Access
 
@@ -76,9 +96,19 @@ The app automatically saves your last used duration to `~/.config/desktop-zen-ap
 
 ## 🏗️ Building
 
-### Production Build
+### ⚡ Easy Build
 
-Create a standalone executable:
+**Linux/macOS:**
+```bash
+./build.sh
+```
+
+**Windows:**
+```cmd
+build.bat
+```
+
+Or build manually:
 
 ```bash
 cd desktop-zen-app
@@ -107,7 +137,19 @@ wails build -clean
 
 ## 🧪 Testing
 
-### Run All Tests
+### ⚡ Run All Tests
+
+**Linux/macOS:**
+```bash
+./test.sh
+```
+
+**Windows:**
+```cmd
+test.bat
+```
+
+Or run manually:
 
 ```bash
 # Frontend tests (Vue components + store)
@@ -121,7 +163,7 @@ go test ./...
 
 ### Test Coverage
 
-- **Frontend**: 178 tests (component tests + property-based tests)
+- **Frontend**: 192 tests (component tests + property-based tests)
 - **Backend**: 18 tests (config, notifications, session management)
 
 ### Test Files
