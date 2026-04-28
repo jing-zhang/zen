@@ -15,6 +15,41 @@ Desktop Zen App is a minimalist timer application designed to help you maintain 
 - **Config Persistence**: Automatically saves your last used duration
 - **Cross-Platform**: Runs on Windows, macOS, and Linux
 - **Distraction-Free UI**: Minimal, focused interface with no unnecessary elements
+- **Multi-Language**: English and Chinese support with persistent preference
+
+## ⚡ Quick Start (30 seconds)
+
+### Step 1: Go to the app directory
+```bash
+cd desktop-zen-app
+```
+
+### Step 2: Run the app
+**Linux/macOS:**
+```bash
+./run.sh
+```
+
+**Windows:**
+```cmd
+run.bat
+```
+
+### Step 3: Open the app
+- Native window opens automatically
+- Or visit http://localhost:5174 in your browser
+
+**That's it!** 🎉
+
+---
+
+## 📖 Full Documentation
+
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** ← Start here for detailed setup
+- **[desktop-zen-app/QUICKSTART.md](desktop-zen-app/QUICKSTART.md)** - Fast reference guide
+- **[desktop-zen-app/README.md](desktop-zen-app/README.md)** - Complete documentation
+
+---
 
 ## 🚀 Quick Start
 
@@ -22,16 +57,15 @@ Desktop Zen App is a minimalist timer application designed to help you maintain 
 
 - **Go** 1.20+ ([Download](https://golang.org/dl/))
 - **Node.js** 16+ ([Download](https://nodejs.org/))
-- **Wails CLI** ([Install](https://wails.io/docs/gettingstarted/installation))
 
 For Linux, you'll also need GTK and WebKit development libraries:
 ```bash
 sudo apt-get install libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev
 ```
 
-### Development Mode
+### Manual Development Mode
 
-Run the app in development mode with hot reload:
+If you prefer to run manually instead of using the scripts:
 
 ```bash
 cd desktop-zen-app
@@ -43,10 +77,6 @@ This starts:
 - **Vite Dev Server**: http://localhost:5174 (browser access)
 
 Changes to frontend code reload instantly. Changes to Go code require recompilation.
-
-### Browser Access
-
-You can also access the app in your browser at http://localhost:5174 during development.
 
 ## 📖 How to Use
 
@@ -76,10 +106,21 @@ The app automatically saves your last used duration to `~/.config/desktop-zen-ap
 
 ## 🏗️ Building
 
-### Production Build
+### Easy Build
 
-Create a standalone executable:
+**Linux/macOS:**
+```bash
+cd desktop-zen-app
+./build.sh
+```
 
+**Windows:**
+```cmd
+cd desktop-zen-app
+build.bat
+```
+
+Or build manually:
 ```bash
 cd desktop-zen-app
 wails build
@@ -90,27 +131,25 @@ Output locations:
 - **macOS**: `build/bin/desktop-zen-app.app`
 - **Windows**: `build/bin/desktop-zen-app.exe`
 
-### Build Options
-
-```bash
-# Build for specific platform
-wails build -platform linux/amd64
-wails build -platform darwin/amd64
-wails build -platform windows/amd64
-
-# Build with optimizations
-wails build -upx  # Compress binary (requires UPX)
-
-# Clean build
-wails build -clean
-```
-
 ## 🧪 Testing
 
-### Run All Tests
+### Easy Test
 
+**Linux/macOS:**
 ```bash
-# Frontend tests (Vue components + store)
+cd desktop-zen-app
+./test.sh
+```
+
+**Windows:**
+```cmd
+cd desktop-zen-app
+test.bat
+```
+
+Or run manually:
+```bash
+# Frontend tests
 cd desktop-zen-app/frontend
 npm run test -- --run
 
@@ -121,13 +160,8 @@ go test ./...
 
 ### Test Coverage
 
-- **Frontend**: 178 tests (component tests + property-based tests)
+- **Frontend**: 192 tests (component tests + property-based tests)
 - **Backend**: 18 tests (config, notifications, session management)
-
-### Test Files
-
-- Frontend tests: `desktop-zen-app/frontend/test/`
-- Go tests: `desktop-zen-app/app_test.go`
 
 ## 📁 Project Structure
 
