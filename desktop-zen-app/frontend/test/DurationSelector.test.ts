@@ -1,44 +1,41 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import DurationSelector from '../src/components/DurationSelector.vue'
+
+const createWrapper = (props: any = {}) => {
+  return mount(DurationSelector, {
+    props: {
+      modelValue: 25,
+      ...props,
+    },
+    global: {
+      plugins: [createPinia()],
+    },
+  })
+}
 
 describe('DurationSelector.vue', () => {
   it('should render the label', () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
-    expect(wrapper.text()).toContain('Duration (min):')
+    const wrapper = createWrapper()
+    expect(wrapper.text()).toContain('Duration (min)')
   })
 
   it('should display the current modelValue', () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 30,
-      },
-    })
+    const wrapper = createWrapper({ modelValue: 30 })
     const input = wrapper.find('input')
     expect(input.element.value).toBe('30')
   })
 
   it('should update displayed value when modelValue prop changes', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     await wrapper.setProps({ modelValue: 35 })
     const input = wrapper.find('input')
     expect(input.element.value).toBe('35')
   })
 
   it('should emit update:modelValue on input change', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('30')
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
@@ -46,11 +43,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should clamp value to min (1) on blur', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('0')
     await input.trigger('blur')
@@ -60,11 +53,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should clamp value to max (60) on blur', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('100')
     await input.trigger('blur')
@@ -74,11 +63,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should clamp value to min (1) on change', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('-5')
     await input.trigger('change')
@@ -88,11 +73,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should clamp value to max (60) on change', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('120')
     await input.trigger('change')
@@ -102,11 +83,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should default to 25 when NaN is entered on blur', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('')
     await input.trigger('blur')
@@ -116,11 +93,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should default to 25 when NaN is entered on change', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     await input.setValue('')
     await input.trigger('change')
@@ -130,11 +103,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should have correct input attributes', () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const input = wrapper.find('input')
     expect(input.attributes('type')).toBe('number')
     expect(input.attributes('min')).toBe('1')
@@ -143,11 +112,7 @@ describe('DurationSelector.vue', () => {
   })
 
   it('should accept valid duration values', async () => {
-    const wrapper = mount(DurationSelector, {
-      props: {
-        modelValue: 25,
-      },
-    })
+    const wrapper = createWrapper()
     const validValues = [1, 15, 25, 45, 60]
     for (const value of validValues) {
       await wrapper.setProps({ modelValue: value })

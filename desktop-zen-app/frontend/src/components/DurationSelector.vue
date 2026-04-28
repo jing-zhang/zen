@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { clampDuration } from '../stores/zenStore'
+import { useLanguageStore } from '../stores/languageStore'
 
 const props = defineProps<{
   modelValue: number
@@ -9,6 +10,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:modelValue': [value: number]
 }>()
+
+const languageStore = useLanguageStore()
 
 const localValue = computed({
   get: () => props.modelValue,
@@ -34,7 +37,7 @@ function handleChange(event: Event): void {
 
 <template>
   <div class="duration-selector">
-    <label for="duration-input">Duration (min):</label>
+    <label for="duration-input">{{ languageStore.t('duration') }}</label>
     <input
       id="duration-input"
       type="number"

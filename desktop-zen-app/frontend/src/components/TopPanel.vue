@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useZenStore, PRESETS } from '../stores/zenStore'
+import { useLanguageStore } from '../stores/languageStore'
 import PresetButton from './PresetButton.vue'
 import DurationSelector from './DurationSelector.vue'
 
 const zenStore = useZenStore()
+const languageStore = useLanguageStore()
 
 function handlePresetSelect(preset: string): void {
   zenStore.selectPreset(preset)
@@ -11,6 +13,11 @@ function handlePresetSelect(preset: string): void {
 
 function handleDurationChange(minutes: number): void {
   zenStore.setCustomDuration(minutes)
+}
+
+function toggleLanguage(): void {
+  const newLang = languageStore.language === 'en' ? 'zh' : 'en'
+  languageStore.setLanguage(newLang)
 }
 </script>
 
@@ -20,7 +27,7 @@ function handleDurationChange(minutes: number): void {
       <PresetButton
         v-for="(duration, preset) in PRESETS"
         :key="preset"
-        :name="preset.charAt(0).toUpperCase() + preset.slice(1)"
+        :name="languageStore.t(preset as any)"
         :is-active="zenStore.activePreset === preset"
         @select="handlePresetSelect(preset)"
       />
@@ -29,6 +36,9 @@ function handleDurationChange(minutes: number): void {
       :model-value="zenStore.selectedDuration"
       @update:model-value="handleDurationChange"
     />
+    <button class="language-toggle" @click="toggleLanguage" :title="`Switch to ${languageStore.language === 'en' ? 'Chinese' : 'English'}`">
+      {{ languageStore.language === 'en' ? '中文' : 'EN' }}
+    </button>
   </div>
 </template>
 
@@ -51,6 +61,28 @@ function handleDurationChange(minutes: number): void {
   gap: var(--spacing-sm);
 }
 
+.language-toggle {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background-color: var(--panel-background);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.language-toggle:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.language-toggle:active {
+  transform: scale(0.95);
+}
+
 @media (max-width: 600px) {
   .top-panel {
     flex-direction: column;
@@ -62,6 +94,10 @@ function handleDurationChange(minutes: number): void {
   .presets {
     width: 100%;
     justify-content: center;
+  }
+
+  .language-toggle {
+    align-self: flex-end;
   }
 }
 </style>

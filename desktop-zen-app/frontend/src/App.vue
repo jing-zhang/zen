@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useZenStore } from './stores/zenStore'
+import { useLanguageStore } from './stores/languageStore'
 import { LoadConfig } from '../wailsjs/go/main/App'
 import { EventsOn } from '../wailsjs/runtime'
 import MainScreen from './components/MainScreen.vue'
 import ZenScreen from './components/ZenScreen.vue'
 
 const zenStore = useZenStore()
+const languageStore = useLanguageStore()
 
 /**
  * On component mount:
- * 1. Load config from Go backend
- * 2. Initialize store from config
- * 3. Register saveAndClose on Wails OnBeforeClose event
+ * 1. Initialize language store
+ * 2. Load config from Go backend
+ * 3. Initialize store from config
+ * 4. Register saveAndClose on Wails OnBeforeClose event
  */
 onMounted(async () => {
+  // Initialize language
+  languageStore.initLanguage()
+
   try {
     // Load persisted config from Go backend
     const config = await LoadConfig()
@@ -46,9 +52,9 @@ onMounted(async () => {
     <!-- Fallback alert modal for denied notifications -->
     <div v-if="zenStore.showFallbackAlert" class="fallback-alert-overlay" @click="zenStore.dismissFallbackAlert()">
       <div class="fallback-alert-modal" @click.stop>
-        <h2>Session Complete</h2>
-        <p>Your Zen session has ended.</p>
-        <button @click="zenStore.dismissFallbackAlert()">Dismiss</button>
+        <h2>{{ languageStore.t('sessionComplete') }}</h2>
+        <p>{{ languageStore.t('yourZenSessionHasEnded') }}</p>
+        <button @click="zenStore.dismissFallbackAlert()">{{ languageStore.t('dismiss') }}</button>
       </div>
     </div>
   </div>
