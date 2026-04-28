@@ -7,11 +7,11 @@ import {
   formatTime,
   parseMMSS,
   PRESETS,
-} from './zenStore'
-import * as AppBindings from '../../wailsjs/go/main/App'
+} from '../src/stores/zenStore'
+import * as AppBindings from '../wailsjs/go/main/App'
 
 // Mock the Wails bindings
-vi.mock('../../wailsjs/go/main/App', () => ({
+vi.mock('../wailsjs/go/main/App', () => ({
   LoadConfig: vi.fn(),
   SaveConfig: vi.fn(),
   SessionComplete: vi.fn(),

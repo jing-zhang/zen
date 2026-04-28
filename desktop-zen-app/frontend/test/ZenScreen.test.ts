@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import ZenScreen from './ZenScreen.vue'
-import { useZenStore } from '../stores/zenStore'
-import ArcIndicator from './ArcIndicator.vue'
-import TimerDisplay from './TimerDisplay.vue'
-import StartButton from './StartButton.vue'
+import ZenScreen from '../src/components/ZenScreen.vue'
+import { useZenStore } from '../src/stores/zenStore'
+import ArcIndicator from '../src/components/ArcIndicator.vue'
+import TimerDisplay from '../src/components/TimerDisplay.vue'
+import StartButton from '../src/components/StartButton.vue'
 
 describe('ZenScreen.vue', () => {
   beforeEach(() => {

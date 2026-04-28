@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import DurationSelector from './DurationSelector.vue'
+import DurationSelector from '../src/components/DurationSelector.vue'
 
 describe('DurationSelector.vue', () => {
   it('should render the label', () => {

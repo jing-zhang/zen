@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import PresetButton from './PresetButton.vue'
+import PresetButton from '../src/components/PresetButton.vue'
 
 describe('PresetButton.vue', () => {
   it('should render the preset name', () => {

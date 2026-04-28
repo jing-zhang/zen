@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import MainScreen from './MainScreen.vue'
-import TopPanel from './TopPanel.vue'
-import StartButton from './StartButton.vue'
-import PresetButton from './PresetButton.vue'
-import DurationSelector from './DurationSelector.vue'
+import MainScreen from '../src/components/MainScreen.vue'
+import TopPanel from '../src/components/TopPanel.vue'
+import StartButton from '../src/components/StartButton.vue'
+import PresetButton from '../src/components/PresetButton.vue'
+import DurationSelector from '../src/components/DurationSelector.vue'
 
 describe('MainScreen.vue', () => {
   beforeEach(() => {

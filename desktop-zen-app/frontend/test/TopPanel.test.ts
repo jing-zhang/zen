@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import TopPanel from './TopPanel.vue'
-import { useZenStore } from '../stores/zenStore'
-import PresetButton from './PresetButton.vue'
-import DurationSelector from './DurationSelector.vue'
+import TopPanel from '../src/components/TopPanel.vue'
+import { useZenStore } from '../src/stores/zenStore'
+import PresetButton from '../src/components/PresetButton.vue'
+import DurationSelector from '../src/components/DurationSelector.vue'
 
 describe('TopPanel.vue', () => {
   beforeEach(() => {

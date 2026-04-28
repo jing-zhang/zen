@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import TimerDisplay from './TimerDisplay.vue'
+import TimerDisplay from '../src/components/TimerDisplay.vue'
 
 describe('TimerDisplay.vue', () => {
   it('should render the timer display container', () => {

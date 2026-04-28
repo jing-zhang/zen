@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import StartButton from './StartButton.vue'
-import { useZenStore } from '../stores/zenStore'
+import StartButton from '../src/components/StartButton.vue'
+import { useZenStore } from '../src/stores/zenStore'
 
 describe('StartButton.vue', () => {
   beforeEach(() => {

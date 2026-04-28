@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ArcIndicator from './ArcIndicator.vue'
+import ArcIndicator from '../src/components/ArcIndicator.vue'
 
 describe('ArcIndicator.vue', () => {
   const radius = 130
