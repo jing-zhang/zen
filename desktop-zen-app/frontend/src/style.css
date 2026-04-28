@@ -1,0 +1,110 @@
+/* ============================================================================
+   Global Styles and CSS Variables
+   ============================================================================ */
+
+/* Define CSS variables for the minimal color palette */
+:root {
+  /* Main colors */
+  --background: #1b2636;
+  --text: #ffffff;
+  --accent: #4a9eff;
+  --cancel-accent: #d9534f;
+
+  /* Component-specific colors */
+  --panel-background: #2a3f5f;
+  --zen-background: #1b2636;
+  --border-color: #3a5f7f;
+
+  /* Button colors */
+  --button-start-bg: #4a9eff;
+  --button-start-hover: #3a8eef;
+  --button-cancel-bg: #d9534f;
+  --button-cancel-hover: #c9453f;
+  --button-disabled-bg: #555555;
+  --button-disabled-text: #999999;
+
+  /* Arc indicator colors */
+  --arc-color: #4a9eff;
+  --arc-background: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-xlarge: 48px;
+  --font-size-timer: 5rem;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Panel dimensions */
+  --panel-height: 80px;
+}
+
+/* Font face definition */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+}
+
+/* HTML and body reset */
+html {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  background-color: var(--background);
+  font-family: var(--font-family);
+  overflow: hidden;
+}
+
+/* Root app container */
+#app {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove default input styles */
+input {
+  font-family: inherit;
+}
+
+/* Ensure all elements use border-box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+

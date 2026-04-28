@@ -1,0 +1,27 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "desktop-zen-app",
+  "outputfilename": "desktop-zen-app",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Zhang Jing",
+    "email": "kingzad.zhang@gmail.com"
+  },
+  "version": "1.0.0",
+  "description": "A cross-platform desktop Zen app for distraction-free focus sessions",
+  "windows": {
+    "width": 1024,
+    "height": 768
+  },
+  "darwin": {
+    "width": 1024,
+    "height": 768
+  },
+  "linux": {
+    "width": 1024,
+    "height": 768
+  }
+}
