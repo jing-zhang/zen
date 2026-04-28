@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useZenStore, clampDuration } from '../stores/zenStore'
+import { useLanguageStore } from '../stores/languageStore'
 
 const zenStore = useZenStore()
+const languageStore = useLanguageStore()
 
 const isDisabled = computed(() => {
   if (zenStore.mode === 'zen') {
@@ -14,7 +16,7 @@ const isDisabled = computed(() => {
 })
 
 const buttonLabel = computed(() => {
-  return zenStore.mode === 'zen' ? 'Cancel' : 'Start'
+  return zenStore.mode === 'zen' ? languageStore.t('cancel') : languageStore.t('start')
 })
 
 const buttonClass = computed(() => {
