@@ -34,4 +34,4 @@ yarn-error.log*
 .cache/
 
 # Go
-go.sum
+# go.sum - NOT ignored, it's Go's lockfile and should be committed

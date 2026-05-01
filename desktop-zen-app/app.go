@@ -91,7 +91,7 @@ func (a *App) LoadConfig() AppConfig {
 }
 
 // SaveConfig marshals and writes the config file.
-// Logs error silently if directory is not writable.
+// Returns error if directory is not writable or file cannot be written.
 func (a *App) SaveConfig(durationMinutes int) error {
 	// Clamp the duration to valid range
 	durationMinutes = clampDuration(durationMinutes)
@@ -155,6 +155,10 @@ func (a *App) SessionCancelled() {
 // It saves the current duration to config
 func (a *App) onBeforeClose(ctx context.Context) (prevent bool) {
 	// Save the last known duration
-	_ = a.SaveConfig(a.lastDurationMinutes)
+	err := a.SaveConfig(a.lastDurationMinutes)
+	if err != nil {
+		log.Printf("Failed to save config on close: %v", err)
+		// Continue with close despite error
+	}
 	return false
 }

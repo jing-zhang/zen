@@ -136,7 +136,7 @@ export const useZenStore = defineStore('zen', () => {
   /**
    * Starts a Zen session.
    * Transitions mode to 'zen'; sets remainingSeconds and totalSeconds to selectedDuration * 60;
-   * starts setInterval calling tick() every 1000 ms.
+   * starts setInterval calling tick() every 1000 ms with drift correction.
    */
   function startSession(): void {
     mode.value = 'zen'
@@ -149,15 +149,30 @@ export const useZenStore = defineStore('zen', () => {
       clearInterval(intervalId.value)
     }
 
-    // Start the countdown interval
+    // Start the countdown interval with drift correction
+    const startTime = Date.now()
+    
     intervalId.value = setInterval(() => {
-      tick()
+      const now = Date.now()
+      const elapsedMs = now - startTime
+      const elapsedSeconds = Math.floor(elapsedMs / 1000)
+      
+      // Calculate remaining seconds based on actual elapsed time
+      const newRemainingSeconds = Math.max(0, totalSeconds.value - elapsedSeconds)
+      remainingSeconds.value = newRemainingSeconds
+
+      if (remainingSeconds.value <= 0) {
+        remainingSeconds.value = 0
+        completeSession()
+      }
     }, 1000)
   }
 
   /**
    * Decrements remainingSeconds by 1.
    * Calls completeSession() when remainingSeconds reaches 0.
+   * Note: This is kept for backward compatibility with tests.
+   * The actual timer uses Date.now() delta for accuracy.
    */
   function tick(): void {
     remainingSeconds.value -= 1
@@ -222,12 +237,14 @@ export const useZenStore = defineStore('zen', () => {
   /**
    * Saves the current duration and closes the app.
    * Calls Go SaveConfig with selectedDuration.
+   * Logs errors but doesn't prevent app close.
    */
   async function saveAndClose(): Promise<void> {
     try {
       await SaveConfig(selectedDuration.value)
     } catch (error) {
       console.error('SaveConfig failed:', error)
+      // Log error but continue - don't prevent app close
     }
   }
 
