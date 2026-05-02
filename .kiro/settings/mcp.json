@@ -6,6 +6,10 @@
       "env": {},
       "disabled": true,
       "autoApprove": []
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp"]
     }
   }
 }
